@@ -64,9 +64,8 @@ async function main() {
     checks: {}
   };
 
-  // 0) health (non-api base)
-  const healthUrl = apiBase.replace(/\/api\/v1\/?$/, "") + "/health";
-  out.checks.health = await httpJson(healthUrl);
+  // 0) health (under api base)
+  out.checks.health = await httpJson(`${apiBase}/health`);
 
   // 1) register poster + voter
   const posterReg = await httpJson(`${apiBase}/agents/register`, {

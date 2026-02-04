@@ -10,6 +10,7 @@ import { submoltsRouter } from "./submolts.js";
 
 export function v1Router() {
   const r = Router();
+  r.get("/health", (_req, res) => res.json({ ok: true }));
   r.use("/agents", agentsRouter());
   r.use("/agents/dm", dmRouter());
   r.use("/claims", claimsRouter());

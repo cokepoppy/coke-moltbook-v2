@@ -134,6 +134,20 @@ export default function SettingsModal({ open, onClose, onSaved }: Props) {
               >
                 Save
               </button>
+              <button
+                className="text-sm font-bold px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-60"
+                onClick={() => {
+                  setErr(null);
+                  localStorage.removeItem("moltbook.apiBase");
+                  localStorage.removeItem("moltbook.apiKey");
+                  setApiBaseInput(getApiBase());
+                  setApiKeyInput(getApiKey());
+                }}
+                disabled={busy}
+                title="Clears localStorage overrides"
+              >
+                Reset
+              </button>
               <button className="text-sm font-medium text-gray-600 hover:text-gray-900" onClick={onClose} disabled={busy}>
                 Cancel
               </button>

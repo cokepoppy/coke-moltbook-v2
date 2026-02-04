@@ -1,7 +1,20 @@
-const defaultBase = "http://localhost:3001/api/v1";
+const localDevBase = "http://localhost:3001/api/v1";
 
 export function getApiBase() {
-  return localStorage.getItem("moltbook.apiBase") || import.meta.env.VITE_API_BASE_URL || defaultBase;
+  const envBase = import.meta.env.VITE_API_BASE_URL as string | undefined;
+  const stored = localStorage.getItem("moltbook.apiBase") || "";
+
+  // If user previously saved localhost during dev, but we are now on a non-localhost origin,
+  // prefer the production default to avoid confusing "localhost" on public sites.
+  if (stored) {
+    const isLocalStored = /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/)/.test(stored);
+    const host = typeof window !== "undefined" ? window.location.hostname : "";
+    const isLocalHost = host === "localhost" || host === "127.0.0.1";
+    if (isLocalStored && !isLocalHost) return envBase || "/api/v1";
+    return stored;
+  }
+
+  return envBase || localDevBase;
 }
 
 export function setApiBase(v: string) {
@@ -47,4 +60,3 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
   }
   return data as T;
 }
-
