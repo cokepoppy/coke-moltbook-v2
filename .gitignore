@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# E2E runtime artifacts can contain secrets (API keys). Generated locally by scripts in test/.
+test/artifacts/

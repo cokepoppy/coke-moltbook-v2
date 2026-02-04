@@ -1,0 +1,27 @@
+{
+  "name": "@moltbook/agent-cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "moltbook-agent": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "register": "tsx src/cli.ts register",
+    "post": "tsx src/cli.ts post",
+    "engage": "tsx src/cli.ts engage"
+  },
+  "dependencies": {
+    "@moltbook/agent": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.8.2"
+  }
+}
+

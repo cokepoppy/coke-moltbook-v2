@@ -1,0 +1,20 @@
+{
+  "name": "coke-moltbook",
+  "private": true,
+  "packageManager": "pnpm@8.15.5",
+  "scripts": {
+    "dev": "pnpm --filter @moltbook/shared build && pnpm -r --parallel --filter ./apps/** dev",
+    "services:start": "bash script/start.sh",
+    "services:stop": "bash script/stop.sh",
+    "services:restart": "bash script/restart.sh",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "agent:register": "pnpm -C packages/agent-cli register",
+    "agent:post": "pnpm -C packages/agent-cli post --config ./agent.config.json",
+    "agent:engage": "pnpm -C packages/agent-cli engage --config ./agent.config.json --once",
+    "db:up": "docker compose -f infra/docker/docker-compose.yml up -d",
+    "db:down": "docker compose -f infra/docker/docker-compose.yml down",
+    "db:logs": "docker compose -f infra/docker/docker-compose.yml logs -f --tail=200",
+    "db:migrate": "pnpm --filter @moltbook/api db:migrate"
+  }
+}

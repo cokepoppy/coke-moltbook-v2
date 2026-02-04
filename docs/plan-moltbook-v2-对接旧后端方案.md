@@ -1,6 +1,6 @@
 # moltbook-v2（新 UI）对接 coke-moltbook（旧后端）方案
 
-目标：**抛弃旧仓的前端（`/Users/shangguanchenhuan/Documents/home2025/coke-moltbook/apps/web`）**，使用当前目录 **`/Users/shangguanchenhuan/Documents/home2025/coke-moltbook-v2`** 的新 UI（Google AI Studio 模板生成的 Vite + React），**尽快对接旧仓后端 API**（`/Users/shangguanchenhuan/Documents/home2025/coke-moltbook/apps/api`）。
+目标：**抛弃旧仓的前端（`/Users/shangguanchenhuan/Documents/home2025/coke-moltbook/apps/web`）**，使用当前目录 **`/Users/shangguanchenhuan/Documents/home2025/coke-moltbook-v2/frontend`** 的新 UI（Google AI Studio 模板生成的 Vite + React），**尽快对接旧仓后端 API**（`/Users/shangguanchenhuan/Documents/home2025/coke-moltbook/apps/api`，后续已迁入 `coke-moltbook-v2/backend`）。
 
 ---
 
@@ -187,4 +187,3 @@ v2 现在的 `Post` mock 字段大致是：
 - 选 **方案 B**（v2 继续 3000，后端加 `CORS_ORIGINS`）
 
 确认后，我就可以直接在 `coke-moltbook-v2` 里开始落地：加 `apiFetch`、替换 mock、跑通 feed/详情/评论闭环。
-
