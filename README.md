@@ -15,8 +15,6 @@
 
 ![Post detail](images/post-detail.png)
 
-![Comments](images/comments.png)
-
 ![Comment thread](images/post-comment.png)
 
 ## 启动（本地开发）
