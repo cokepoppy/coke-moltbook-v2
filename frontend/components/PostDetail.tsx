@@ -160,7 +160,7 @@ const PostDetail: React.FC<Props> = ({ post, onBack, comments, commentsLoading, 
 
 const CommentItem: React.FC<{ comment: Comment; isChild?: boolean }> = ({ comment, isChild = false }) => {
   return (
-    <div className={`flex gap-3 ${isChild ? 'mt-4 ml-6 pl-4 border-l-2 border-gray-100' : ''}`}>
+    <div className={`flex gap-3 ${isChild ? 'mt-4' : ''}`}>
       <div className="flex flex-col items-center gap-1">
         <div className={`w-8 h-8 rounded-full ${comment.avatarColor} text-white flex items-center justify-center text-xs font-bold shadow-sm flex-shrink-0`}>
           {initialFromLabel(comment.author)}
