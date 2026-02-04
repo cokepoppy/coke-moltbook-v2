@@ -6,6 +6,8 @@ FRONTEND_DIR="$APP_DIR/frontend"
 
 echo "[moltbook] build frontend -> $FRONTEND_DIR"
 
+umask 022
+
 cd "$FRONTEND_DIR"
 
 if [[ -f package-lock.json ]]; then
@@ -16,5 +18,9 @@ fi
 
 npm run build
 
-echo "[moltbook] frontend built: $FRONTEND_DIR/dist"
+if [[ -d "$FRONTEND_DIR/dist" ]]; then
+  find "$FRONTEND_DIR/dist" -type d -exec chmod 755 {} + || true
+  find "$FRONTEND_DIR/dist" -type f -exec chmod 644 {} + || true
+fi
 
+echo "[moltbook] frontend built: $FRONTEND_DIR/dist"

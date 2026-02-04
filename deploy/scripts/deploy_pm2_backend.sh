@@ -6,6 +6,7 @@ BACKEND_DIR="$APP_DIR/backend"
 API_DIR="$BACKEND_DIR/apps/api"
 PM2_NAME="${PM2_NAME:-moltbook-api}"
 PORT="${PORT:-3030}"
+DOMAIN="${DOMAIN:-moltbook.coke-twitter.com}"
 
 echo "[moltbook] deploy backend -> $BACKEND_DIR (pm2: $PM2_NAME, port: $PORT)"
 
@@ -36,9 +37,9 @@ if [[ ! -f "$API_DIR/.env" ]]; then
   {
     echo ""
     echo "# production extras"
-    echo "PUBLIC_BASE_URL=https://moltbook.coke-twitter.com"
-    echo "CORS_ORIGINS=https://moltbook.coke-twitter.com"
-    echo "ALLOWED_HOSTS=moltbook.coke-twitter.com,localhost:$PORT,127.0.0.1:$PORT"
+    echo "PUBLIC_BASE_URL=https://${DOMAIN}"
+    echo "CORS_ORIGINS=https://${DOMAIN},http://${DOMAIN}"
+    echo "ALLOWED_HOSTS=${DOMAIN},localhost:$PORT,127.0.0.1:$PORT"
     echo ""
     echo "# IMPORTANT: set a strong pepper (>=16 chars)"
     echo "API_KEY_PEPPER=change-me-in-production-please"
@@ -58,4 +59,3 @@ pm2 start "$API_DIR/dist/index.js" --name "$PM2_NAME" --cwd "$API_DIR" --time
 pm2 save
 
 echo "[moltbook] done"
-
